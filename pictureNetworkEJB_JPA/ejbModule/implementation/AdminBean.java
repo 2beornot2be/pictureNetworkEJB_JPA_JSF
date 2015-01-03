@@ -13,6 +13,7 @@ import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 
 import entities.Admin;
+import entities.Comment;
 import entities.User;
 import entities.State;
 
@@ -131,21 +132,13 @@ public class AdminBean implements AdminBeanRemote, AdminBeanLocal {
 	}
 
 	@Override
-	public Admin findAdmin(int id) {
-		// TODO Auto-generated method stub
-		if(emf != null)
-		{
-			em = emf.createEntityManager();
-		}
-		// TODO Auto-generated method stub
-		Admin admin = null;
-		if(em != null)
-		{
-			return em.find( Admin.class, id);
-			
-		}
+	public Admin findAdmin( int id) {
+	
+		begin();
 		
-		return admin;
+			return em.find(Admin.class, id);
+		
+		
 	}
 
 	@Override

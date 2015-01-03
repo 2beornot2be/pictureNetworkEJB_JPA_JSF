@@ -15,6 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 
 import entities.BadWorld;
+import entities.Category;
 
 @Stateless
 @LocalBean
@@ -101,12 +102,21 @@ public class BadWordBean implements BadWordBeanLocal, BadWordBeanRemote {
 		return false;
 	}
 
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public List<BadWorld> findAllBadWorld() {
-		return em.createQuery("select u from BadWorld u").getResultList();
+		begin();
+		List<BadWorld> badwords = null;
+		String query = "select u from BadWorld u";
+		if(em != null)
+		{
+			badwords = em.createQuery(query).getResultList();
+			return badwords;
+		}
+		return badwords;
 	}
-
+	
+	
 	@Override
 	public boolean removeBadWord(int id) {
 		if (emf != null) {

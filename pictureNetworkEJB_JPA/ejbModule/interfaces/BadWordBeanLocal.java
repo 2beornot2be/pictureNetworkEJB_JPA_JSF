@@ -13,7 +13,6 @@ public interface BadWordBeanLocal {
 	public Boolean updateBadWord(BadWorld badword);
 	public boolean removeBadWord(int id);
 	public BadWorld findBadWord(int id);
-	
 	public List<BadWorld> findAllBadWorld();
 	public boolean valider(String message);
 	
